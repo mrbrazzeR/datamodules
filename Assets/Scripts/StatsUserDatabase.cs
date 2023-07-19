@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Data
 {
-    public class StatsDatabase : Database
+    public class StatsUserDatabase : UserDatabase
     {
         [JsonProperty("stats")]private StatsInfo _stats;
 
-        public StatsDatabase()
+        public StatsUserDatabase()
         {
             Load();
         }
