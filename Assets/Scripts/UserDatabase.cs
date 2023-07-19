@@ -1,6 +1,6 @@
 namespace Data
 {
-    public abstract class Database
+    public abstract class UserDatabase
     {
         protected abstract void Save();
         protected abstract void Load();

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Data
 {
-    public class CurrencyData : Database
+    public class CurrencyData : UserDatabase
     {
         [JsonProperty("currency")] private CurrencyInfo _data;
 

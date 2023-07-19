@@ -9,15 +9,15 @@ namespace Data
 {
     public static class DataModule
     {
-        [JsonProperty("0")] private static Dictionary<Type, Database> _databases = new();
+        [JsonProperty("0")] private static Dictionary<Type, UserDatabase> _databases = new();
         private static string _savedJson = "";
 
-        public static T GetModule<T>() where T : Database, new()
+        public static T GetModule<T>() where T : UserDatabase, new()
         {
             return _GetModule<T>();
         }
 
-        private static T _GetModule<T>() where T : Database, new()
+        private static T _GetModule<T>() where T : UserDatabase, new()
         {
             if (_databases.TryGetValue(typeof(T), out var constructor)) return (T)constructor;
             constructor = new T();
