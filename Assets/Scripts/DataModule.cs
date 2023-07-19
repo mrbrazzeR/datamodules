@@ -19,11 +19,26 @@ namespace Data
 
         private static T _GetModule<T>() where T : UserDatabase, new()
         {
-            if (_databases.TryGetValue(typeof(T), out var constructor)) return (T)constructor;
+            if (_databases.TryGetValue(typeof(T), out var constructor))
+            {
+                constructor.DataChanged += ModuleDataChange<T>;
+                return (T)constructor;
+            }
+
             constructor = new T();
             _databases.Add(typeof(T), constructor);
-
+            constructor.DataChanged += ModuleDataChange<T>;
             return (T)constructor;
+        }
+
+        private static void ModuleDataChange<T>(object sender, EventArgs e) where T : UserDatabase
+        {
+            if (sender is not T database) return;
+            var type = typeof(T);
+            if (_databases.ContainsKey(type))
+            {
+                _databases[type] = database;
+            }
         }
 
         public static void SaveAll()

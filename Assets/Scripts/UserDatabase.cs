@@ -1,9 +1,14 @@
+using System;
+
 namespace Data
 {
     public abstract class UserDatabase
     {
-        protected abstract void Save();
-        protected abstract void Load();
+        public event EventHandler DataChanged;
+        protected void OnDataChanged()
+        {
+            DataChanged?.Invoke(this, EventArgs.Empty);
+        }
 
         public abstract string GetDataJson();
 

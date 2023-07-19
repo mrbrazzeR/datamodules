@@ -1,23 +1,25 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Data
 {
-    public class StatsUserDatabase : UserDatabase
+    public sealed class StatsUserDatabase : UserDatabase
     {
-        [JsonProperty("stats")]private StatsInfo _stats;
+        [JsonProperty("stats")] private StatsInfo _stats;
+        [JsonProperty("type")] public string Type { get; set; } = typeof(StatsUserDatabase).FullName;
 
         public StatsUserDatabase()
         {
             Load();
         }
 
-        protected override void Save()
+        private void Save()
         {
             PlayerPrefs.SetString("stats", JsonConvert.SerializeObject(_stats));
         }
 
-        protected sealed override void Load()
+        private void Load()
         {
             _stats = JsonConvert.DeserializeObject<StatsInfo>(PlayerPrefs.GetString("stats")) ?? new StatsInfo()
             {
@@ -29,13 +31,17 @@ namespace Data
 
         public override string GetDataJson()
         {
-            return JsonConvert.SerializeObject(_stats);
+            return JsonConvert.SerializeObject(this);
         }
 
         public override void SynchronizeData(string data)
         {
-            PlayerPrefs.SetString("stats", data);
-            _stats = JsonConvert.DeserializeObject<StatsInfo>(data);
+            var startIndex = data.IndexOf("{", data.IndexOf("{", StringComparison.Ordinal) + 1, StringComparison.Ordinal);
+            var endIndex = data.IndexOf("}", startIndex, StringComparison.Ordinal);
+            var result = data.Substring(startIndex, endIndex - startIndex + 1);
+            _stats = JsonConvert.DeserializeObject<StatsInfo>(result);
+
+            Save();
         }
 
         public StatsInfo LoadStats()
@@ -47,18 +53,21 @@ namespace Data
         public void ChangeHealth(int stats)
         {
             _stats.Health = stats;
+            OnDataChanged();
             Save();
         }
 
         public void ChangeDamage(int stats)
         {
             _stats.Damage = stats;
+            OnDataChanged();
             Save();
         }
 
         public void ChangeSpeed(int stats)
         {
             _stats.Speed = stats;
+            OnDataChanged();
             Save();
         }
     }
