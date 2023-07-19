@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Data
 {
-    public sealed class StatsUserDatabase : UserDatabase
+    public sealed class StatsUserData : UserDatabase
     {
         [JsonProperty("stats")] private StatsInfo _stats;
-        [JsonProperty("type")] public string Type { get; set; } = typeof(StatsUserDatabase).FullName;
+        [JsonProperty("type")] public string Type { get; set; } = typeof(StatsUserData).FullName;
 
-        public StatsUserDatabase()
+        public StatsUserData()
         {
             Load();
         }

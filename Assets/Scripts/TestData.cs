@@ -6,7 +6,7 @@ namespace Data
     {
         private void Awake()
         {
-            var data = DataModule.GetModule<StatsUserDatabase>();
+            var data = DataModule.GetModule<StatsUserData>();
             Debug.Log(data.LoadStats().Health);
             data.ChangeHealth(400);
             var currency = DataModule.GetModule<CurrencyData>();

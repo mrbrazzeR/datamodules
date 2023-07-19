@@ -21,17 +21,17 @@ namespace Data
         {
             if (_databases.TryGetValue(typeof(T), out var constructor))
             {
-                constructor.DataChanged += ModuleDataChange<T>;
+                constructor.DataChanged += SynchronizeDataChange<T>;
                 return (T)constructor;
             }
 
             constructor = new T();
             _databases.Add(typeof(T), constructor);
-            constructor.DataChanged += ModuleDataChange<T>;
+            constructor.DataChanged += SynchronizeDataChange<T>;
             return (T)constructor;
         }
 
-        private static void ModuleDataChange<T>(object sender, EventArgs e) where T : UserDatabase
+        private static void SynchronizeDataChange<T>(object sender, EventArgs e) where T : UserDatabase
         {
             if (sender is not T database) return;
             var type = typeof(T);
