@@ -6,7 +6,7 @@ namespace Data
 {
     public sealed class StatsUserData : UserDatabase
     {
-        [JsonProperty("stats")] private StatsInfo _stats;
+        [JsonProperty("stats")] private StatsInfo _stats =new();
         [JsonProperty("type")] public string Type { get; set; } = typeof(StatsUserData).FullName;
 
         public StatsUserData()
@@ -16,17 +16,11 @@ namespace Data
 
         private void Save()
         {
-            PlayerPrefs.SetString("stats", JsonConvert.SerializeObject(_stats));
+            OnDataChanged();
         }
 
         private void Load()
         {
-            _stats = JsonConvert.DeserializeObject<StatsInfo>(PlayerPrefs.GetString("stats")) ?? new StatsInfo()
-            {
-                Health = 1,
-                Damage = 1,
-                Speed = 1
-            };
         }
 
         public override string GetDataJson()
@@ -36,11 +30,11 @@ namespace Data
 
         public override void SynchronizeData(string data)
         {
-            var startIndex = data.IndexOf("{", data.IndexOf("{", StringComparison.Ordinal) + 1, StringComparison.Ordinal);
+            var startIndex = data.IndexOf("{", data.IndexOf("{", StringComparison.Ordinal) + 1,
+                StringComparison.Ordinal);
             var endIndex = data.IndexOf("}", startIndex, StringComparison.Ordinal);
             var result = data.Substring(startIndex, endIndex - startIndex + 1);
             _stats = JsonConvert.DeserializeObject<StatsInfo>(result);
-
             Save();
         }
 

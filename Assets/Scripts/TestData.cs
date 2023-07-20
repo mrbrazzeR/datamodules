@@ -9,7 +9,7 @@ namespace Data
             var data = DataModule.GetModule<StatsUserData>();
             Debug.Log(data.LoadStats().Health);
             data.ChangeHealth(400);
-
+            var data2 = DataModule.GetModule<CollectionData>();
         }
     }
 }

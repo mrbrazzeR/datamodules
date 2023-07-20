@@ -21,7 +21,6 @@ namespace Data
         {
             if (_databases.TryGetValue(typeof(T), out var constructor))
             {
-                constructor.DataChanged += SynchronizeDataChange<T>;
                 return (T)constructor;
             }
 
@@ -56,7 +55,13 @@ namespace Data
             foreach (var json in jsons)
             {
                 var type = Type.GetType((string)json["type"] ?? string.Empty);
-                if (type == null || !_databases.TryGetValue(type, out var constructor)) continue;
+                if (type == null) continue;
+                if (!_databases.TryGetValue(type, out var constructor))
+                {
+                    constructor = (UserDatabase)Activator.CreateInstance(type);
+                    _databases[type] = constructor;
+                }
+
                 constructor.SynchronizeData(json.ToString());
             }
         }

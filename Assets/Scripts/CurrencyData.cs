@@ -6,7 +6,7 @@ namespace Data
 {
     public sealed class CurrencyData : UserDatabase
     {
-        [JsonProperty("currency")] private CurrencyInfo _data;
+        [JsonProperty("currency")] private CurrencyInfo _data=new();
         [JsonProperty("type")]
         public string Type { get; set; } = typeof(CurrencyData).FullName;
 
@@ -17,16 +17,11 @@ namespace Data
 
         private void Save()
         {
-            PlayerPrefs.SetString("currency", JsonConvert.SerializeObject(_data));
+           OnDataChanged();
         }
 
         private void Load()
         {
-            _data = JsonConvert.DeserializeObject<CurrencyInfo>(PlayerPrefs.GetString("currency")) ?? new CurrencyInfo()
-            {
-                Coin = 1,
-                Gem = 1,
-            };
         }
 
         public override string GetDataJson()
