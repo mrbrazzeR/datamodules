@@ -6,7 +6,7 @@ namespace Data
 {
     public sealed class CurrencyData : UserDatabase
     {
-        [JsonProperty("currency")] private CurrencyInfo _data=new();
+        [JsonProperty("currency")] private CurrencyInfo _data;
         [JsonProperty("type")]
         public string Type { get; set; } = typeof(CurrencyData).FullName;
 
@@ -22,6 +22,7 @@ namespace Data
 
         private void Load()
         {
+            _data ??= new CurrencyInfo();
         }
 
         public override string GetDataJson()
@@ -46,14 +47,12 @@ namespace Data
         public void SetCoin(int coin)
         {
             _data.Coin = coin;
-            OnDataChanged();
             Save();
         }
 
         public void SetGem(int gem)
         {
             _data.Gem = gem;
-            OnDataChanged();
             Save();
         }
     }

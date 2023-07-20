@@ -8,8 +8,6 @@ namespace Data
         {
             var currency = DataModule.GetModule<CurrencyData>();
             Debug.Log(currency.GetCurrency().Coin);
-            currency.SetCoin(300);
-            Debug.Log(currency.GetCurrency().Coin);
         }
     }
 }

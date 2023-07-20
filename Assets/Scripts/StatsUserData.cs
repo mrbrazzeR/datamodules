@@ -6,7 +6,7 @@ namespace Data
 {
     public sealed class StatsUserData : UserDatabase
     {
-        [JsonProperty("stats")] private StatsInfo _stats =new();
+        [JsonProperty("stats")] private StatsInfo _stats;
         [JsonProperty("type")] public string Type { get; set; } = typeof(StatsUserData).FullName;
 
         public StatsUserData()
@@ -21,6 +21,7 @@ namespace Data
 
         private void Load()
         {
+            _stats ??= new StatsInfo();
         }
 
         public override string GetDataJson()
@@ -47,21 +48,18 @@ namespace Data
         public void ChangeHealth(int stats)
         {
             _stats.Health = stats;
-            OnDataChanged();
             Save();
         }
 
         public void ChangeDamage(int stats)
         {
             _stats.Damage = stats;
-            OnDataChanged();
             Save();
         }
 
         public void ChangeSpeed(int stats)
         {
             _stats.Speed = stats;
-            OnDataChanged();
             Save();
         }
     }

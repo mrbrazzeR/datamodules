@@ -7,7 +7,7 @@ namespace Data
 {
     public class CollectionData : UserDatabase
     {
-        [JsonProperty("currency")] private CollectionInfo _data = new();
+        [JsonProperty("collect")] private CollectionInfo _data;
         [JsonProperty("type")] public string Type { get; set; } = typeof(CollectionData).FullName;
 
         public CollectionData()
@@ -22,6 +22,13 @@ namespace Data
 
         private void Load()
         {
+            _data ??= new CollectionInfo()
+            {
+                ID = new List<int>
+                {
+                    Capacity = 0
+                }
+            };
         }
 
         public override string GetDataJson()
@@ -36,14 +43,12 @@ namespace Data
             var endIndex = data.IndexOf("}", startIndex, StringComparison.Ordinal);
             var result = data.Substring(startIndex, endIndex - startIndex + 1);
             _data = JsonConvert.DeserializeObject<CollectionInfo>(result);
-            OnDataChanged();
             Save();
         }
 
         public void AddData(int id)
         {
             _data.ID.Add(id);
-            OnDataChanged();
             Save();
         }
     }
