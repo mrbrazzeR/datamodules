@@ -5,18 +5,25 @@ using UnityEngine;
 
 public class DataModuleInspector : MonoBehaviour
 {
-    [HideInInspector] public int selectedIndex;
-    [HideInInspector] public Type[] databaseType;
+    public int selectedIndex;
+    [HideInInspector] public Type[] databaseType = { };
 
-    private void OnEnable()
+
+    private void Awake()
     {
-        // Get all types that inherit from UserDataBase
         databaseType = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(a => a.GetTypes())
             .Where(t => t.IsSubclassOf(typeof(UserDatabase)))
             .ToArray();
+        var instance = (UserDatabase)Activator.CreateInstance(databaseType[selectedIndex]);
+        Debug.Log(instance.GetDataJson());
+    }
 
-        // Get the names of the types
-        var typeNames = databaseType.Select(t => t.Name).ToArray();
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(databaseType[selectedIndex]);
+        }
     }
 }
