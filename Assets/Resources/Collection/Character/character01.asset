@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe0f700cbe6418382fde9e0673c3ded, type: 3}
   m_Name: character01
   m_EditorClassIdentifier: 
-  data: []
+  data:
+  - health: 100
+    physicDamage: 50
+    abilityPower: 0
+    physicResist: 25
+    magicResist: 25
+    attackSpeed: 1
+    attackRange: 1
+    moveSpeed: 350
+    healPerSecond: 2
+    exp: 0

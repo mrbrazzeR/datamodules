@@ -3,7 +3,7 @@
 namespace Character
 {
     [Serializable]
-    public class CharacterStats
+    public class CharacterStaticStats
     {
         public float health;
         public float physicDamage;
@@ -12,9 +12,8 @@ namespace Character
         public float magicResist;
         public float attackSpeed;
         public float attackRange;
-        public float criticalRate;
         public float moveSpeed;
-        public float armorPenetration;
-        public float magicPenetration;
+        public float healPerSecond;
+        public int exp;
     }
 }
