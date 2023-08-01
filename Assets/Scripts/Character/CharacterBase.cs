@@ -202,6 +202,7 @@ public abstract class CharacterBase : MonoBehaviour, ICharacter
 
     public void BoostHealth(float healthRating = 0, float healthInstance = 0)
     {
+
     }
 
     public void Stun(float timeStun)
