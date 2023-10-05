@@ -1,7 +1,7 @@
 ﻿namespace PoolCustomer
 {
-    public class ChildTest
+    public class ChildTest : ChildPoolObject
     {
-        
+
     }
 }
