@@ -1,8 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
-using UnityEngine;
 
-namespace Data
+namespace Database
 {
     public sealed class CurrencyData : UserDatabase
     {

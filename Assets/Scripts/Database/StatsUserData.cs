@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Data
+namespace Database
 {
     public sealed class StatsUserData : UserDatabase
     {

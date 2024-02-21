@@ -1,6 +1,6 @@
 using System;
 
-namespace Data
+namespace Database
 {
     public abstract class UserDatabase
     {

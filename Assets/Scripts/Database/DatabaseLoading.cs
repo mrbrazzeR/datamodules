@@ -1,7 +1,6 @@
-﻿using Database;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Data
+namespace Database
 {
     public class DatabaseLoading : MonoBehaviour
     {
