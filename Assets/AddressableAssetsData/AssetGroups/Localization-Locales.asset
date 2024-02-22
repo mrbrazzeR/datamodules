@@ -16,40 +16,30 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: e0576f47543baa744a99a4ef071d5e0c
-  m_SerializeEntries:
-  - m_GUID: 34b42bc4437851a42af0fe85ed3bc45f
-    m_Address: German (de)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9490b56d7a055184f9de1835369f994b
-    m_Address: English (en)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c422082c03114d447b8adb95a712d10f
-    m_Address: Spanish (es)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5bbcdc6d7fdb1864ab371a4aad13ba19
-    m_Address: French (fr)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9638dc2d89ee20341ba8e8102232d5e1
-    m_Address: Vietnamese (vi)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 61dd57d46195e864f8509a5b54194a8c, type: 2}
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: e334f905ba7164342a837b6c6f915609, type: 2}
     - {fileID: 11400000, guid: fd8032bd7c5df7549b2fc2c30c6128cc, type: 2}
+  m_FolderEntryCache: []
+  m_AssetCollectionEntryCache: []
+  <FlaggedDuringContentUpdateRestriction>k__BackingField: 0
+  m_CurrentHash:
+    bytes[0]: 157
+    bytes[1]: 188
+    bytes[2]: 38
+    bytes[3]: 73
+    bytes[4]: 240
+    bytes[5]: 31
+    bytes[6]: 226
+    bytes[7]: 78
+    bytes[8]: 5
+    bytes[9]: 181
+    bytes[10]: 42
+    bytes[11]: 238
+    bytes[12]: 144
+    bytes[13]: 233
+    bytes[14]: 202
+    bytes[15]: 83
